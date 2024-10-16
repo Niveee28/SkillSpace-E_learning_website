@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    
+    <script src="https://kit.fontawesome.com/369f6abcb5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMwBq5Xz5bQ4lFfX5i5fj7jMV+Oz7D6gG4fkc" crossorigin="anonymous">
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .search-container {
+            margin: 20px;
+            text-align: center;
+        }
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            margin: 20px auto;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+        }
+        .search-results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .course {
+            display: inline-block;
+            height: 8cm;
+            width: 7cm;
+            margin-top: 50px;
+            border: 2px;
+            border-radius: 10px;
+            border-color: hsl(351, 83%, 61%);
+            border-style: outset;
+            margin-left: 40px;
+            padding: 8px;
+        }
+        .course img {
+            border-radius: 18px;
+            width: 7cm;
+            height: 4.5cm;
+        }
+        .course .topic {
+            display: inline-block;
+            margin-left: 4px;
+            margin-top: 2px;
+            padding: 3px;
+        }
+        .course .des {
+            margin-top: 9px;
+            margin-left: 1px;
+            font-size: 15px;
+        }
+        .course .level {
+            display: inline-block;
+            color: #5001fb;
+            margin-left: 10px;
+            margin-top: 6px;
+            font-size: 18px;
+        }
+        .course .star {
+            color: gold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .course .srate {
+            display: inline-block;
+        }
+        .course .price {
+            display: block;
+            margin-left: 12px;
+            margin-top: 5px;
+            font-size: 22px;
+            color: hsl(351, 83%, 61%);
+        }
+        .course .price i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1 class="the" style="font-family:Arial, Helvetica, sans-serif; letter-spacing: 0.01rem; font-size: 50px; margin-bottom: 20px; margin-top: 70px;">
+            The search results:
+        </h1>
+    </center>
+
+    <div id="search-results" class="search-results">
+        <!-- Courses will be dynamically inserted here -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const courses = [
+                {
+                    category: "web development",
+                    data: [
+                        {
+                            imgSrc: "{% static 'images2/web1.jpeg' %}",
+                            title: "Web development",
+                            description: "Build dynamic websites and applications.",
+                            level: "Beginner",
+                            rating: 4,
+                            price: 900
+                        },
+                        {
+                            imgSrc: "{% static 'images2/web2.png' %}",
+                            title: "Web development",
+                            description: "Learn to build websites using HTML, CSS, and JavaScript.",
+                            level: "Beginner",
+                            rating: 3,
+                            price: 2000
+                        },
+                        {
+                            imgSrc: "{% static 'images2/web3.jpeg' %}",
+                            title: "Web development",
+                            description: "Learn to design, build, and deploy responsive websites.",
+                            level: "Advance",
+                            rating: 4.5,
+                            price: 1000
+                        }
+                    ]
+                },
+                {
+                    category: "Machine Learning",
+                    data: [
+                        {
+                            imgSrc: "{% static 'images2/mac1.jpeg' %}",
+                            title: "Machine learning",
+                            description: "Build systems that automatically learn and improve from data.",
+                            level: "Advance",
+                            rating: 4,
+                            price: 1600
+                        },
+                        {
+                            imgSrc: "{% static 'images2/mac 2.jpg' %}",
+                            title: "Machine learning",
+                            description: "Automate learning from data to create intelligent, adaptive systems.",
+                            level: "Intermediate",
+                            rating: 3,
+                            price: 2200
+                        },
+                        {
+                            imgSrc: "{% static 'images2/mac3.webp' %}",
+                            title: "Machine learning",
+                            description: "Build models that learn and adapt from data autonomously.",
+                            level: "Beginner",
+                            rating: 4.5,
+                            price: 800
+                        }
+                    ]
+                },
+                {
+                    category: "Artificial Intelligence",
+                    data: [
+                        {
+                            imgSrc: "{% static 'images2/ai1.jpg' %}",
+                            title: "Artificial intelligence",
+                            description: "Create intelligent systems that simulate human thinking and decision-making.",
+                            level: "Intermediate",
+                            rating: 3,
+                            price: 1199
+                        },
+                        {
+                            imgSrc: "{% static 'images2/ai2.jpeg' %}",
+                            title: "Artificial intelligence",
+                            description: "Create intelligent systems that mimic human reasoning and decision-making.",
+                            level: "Beginner",
+                            rating: 4,
+                            price: 1100
+                        },
+                        {
+                            imgSrc: "{% static 'images2/ai3.jpeg' %}",
+                            title: "Artificial intelligence",
+                            description: "Develop systems that think, learn, and act like humans.",
+                            level: "Beginner",
+                            rating: 4.5,
+                            price: 2100
+                        }
+                    ]
+                },
+                {
+                    category: "Data Science",
+                    data: [
+                        {
+                            imgSrc: "{% static 'images2/data1.jpeg' %}",
+                            title: "Data science",
+                            description: "Analyze and interpret complex data to drive strategic decisions.",
+                            level: "Beginner",
+                            rating: 3.5,
+                            price: 3100
+                        },
+                        {
+                            imgSrc: "{% static 'images2/data2.webp' %}",
+                            title: "Data science",
+                            description: "Extract insights from data to inform decisions and strategies.",
+                            level: "Advance",
+                            rating: 4,
+                            price: 1500
+                        },
+                        {
+                            imgSrc: "{% static 'images2/data3.jpeg' %}",
+                            title: "Data science",
+                            description: "Use statistical methods and algorithms to analyze and interpret data.",
+                            level: "Advance",
+                            rating: 3,
+                            price: 999
+                        }
+                    ]
+                },
+                {
+                    category: "Cloud Computing",
+                    data: [
+                        {
+                            imgSrc: "{% static 'images2/cloud1.jpeg' %}",
+                            title: "Cloud computing",
+                            description: "Utilize remote servers to store, manage, and process data efficiently.",
+                            level: "Beginner",
+                            rating: 4,
+                            price: 1100
+                        },
+                        {
+                            imgSrc: "{% static 'images2/cloud2.jpeg' %}",
+                            title: "Cloud computing",
+                            description: "Leverage online resources for scalable storage, computing, and services.",
+                            level: "Intermediate",
+                            rating: 3,
+                            price: 1999
+                        },
+                        {
+                            imgSrc: "{% static 'images2/cloud3.webp' %}",
+                            title: "Cloud computing",
+                            description: "Access and manage computing resources and service over internet.",
+                            level: "Beginner",
+                            rating: 4,
+                            price: 3200
+                        }
+                    ]
+                }
+            ];
+
+            function displayCourses(filteredCourses) {
+                const searchResults = document.getElementById("search-results");
+                searchResults.innerHTML = ""; // Clear existing results
+
+                filteredCourses.forEach(courseCategory => {
+                    courseCategory.data.forEach(course => {
+                        const courseDiv = document.createElement("div");
+                        courseDiv.className = "course";
+
+                        const courseContent = `
+                            <div class="one">
+                                <img src="${course.imgSrc}" class="img">
+                                <center><h3 class="topic">${course.title}</h3></center>
+                                <p class="des">${course.description}</p>
+                                <h4 class="level">${course.level}</h4>
+                                <div class="star">
+                                    ${getStars(course.rating)}
+                                </div>
+                                <p class="srate">(${course.rating}/5)</p>
+                                <h1 class="price"><i class="fa-solid fa-indian-rupee-sign"></i>${course.price}</h1>
+                            </div>
+                        `;
+
+                        courseDiv.innerHTML = courseContent;
+                        searchResults.appendChild(courseDiv);
+                    });
+                });
+            }
+
+            function getStars(rating) {
+                let stars = "";
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= Math.floor(rating)) {
+                        stars += '<i class="fa-solid fa-star"></i>';
+                    } else if (i === Math.ceil(rating)) {
+                        stars += '<i class="fa-solid fa-star-half"></i>';
+                    } else {
+                        stars += '<i class="fa-solid fa-star" style="opacity: 0.2;"></i>';
+                    }
+                }
+                return stars;
+            }
+
+            function filterCourses(query) {
+                const lowerCaseQuery = query.toLowerCase();
+                const filteredCourses = courses.filter(category =>
+                    category.data.some(course => course.title.toLowerCase().includes(lowerCaseQuery))
+                );
+                displayCourses(filteredCourses);
+            }
+
+            // Get search query from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
+
+            if (query) {
+                filterCourses(query);
+            }
+        });
+    </script>
+</body>
+</html>

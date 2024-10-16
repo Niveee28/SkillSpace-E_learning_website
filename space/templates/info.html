@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Payment Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .payment-option {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: hsl(351, 83%, 61%);
+        }
+
+        .payment-option.active {
+            border-color: hsl(351, 83%, 61%);
+        }
+
+        .submit-btn {
+            background: hsl(351, 83%, 61%);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: hsl(351, 88%, 71%);
+        }
+
+        .payment-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Payment Information</h1>
+
+        <form id="paymentForm" action="" method="POST">
+            {% csrf_token %}
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <div class="payment-container">
+                <center><h2>Select Payment Method</h2></center>
+
+                <div id="upiPayment" class="payment-option">
+                    <h3>Pay with UPI</h3>
+                    <p>Google Pay, PhonePe, Paytm, etc.</p>
+                </div>
+
+                <div id="cardPayment" class="payment-option">
+                    <h3>Pay with Card</h3>
+                    <p>Visa, MasterCard, American Express, etc.</p>
+                </div>
+            </div>
+
+            <button type="button" class="submit-btn" id="submitPayment">Submit Payment</button>
+        </form>
+    </div>
+
+    <script>
+        let selectedPaymentMethod = '';
+
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function () {
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                selectedPaymentMethod = this.id;
+            });
+        });
+
+        document.getElementById('submitPayment').addEventListener('click', function () {
+            if (selectedPaymentMethod) {
+                if (selectedPaymentMethod === 'upiPayment') {
+                    window.location.href = "{% url 'upi' %}";  // Redirect to UPI payment page
+                } else if (selectedPaymentMethod === 'cardPayment') {
+                    window.location.href = "{% url 'card' %}";  // Redirect to Card payment page
+                }
+            } else {
+                alert("Please select a payment method.");
+            }
+        });
+    </script>
+</body>
+
+</html>

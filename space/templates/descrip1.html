@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Web Development Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container img{
+            margin-left: 80px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul li {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid hsl(351, 83%, 61%);
+        }
+
+        .enroll {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .enroll a {
+            background: hsl(351, 83%, 61%);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .enroll a:hover {
+            background:  hsl(351, 88%, 71%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Web Development: From Basics to Advanced Techniques</h1>
+        <img src="{% static 'images2/web1.jpeg' %}">
+        <h2>Course Overview:</h2>
+        <p>This comprehensive Web Development course is designed to guide you through the essential skills and knowledge
+            required to become a proficient web developer. Whether you're a complete beginner or looking to enhance your
+            existing skills, this course covers everything from foundational concepts to advanced techniques in web
+            development.</p>
+
+        <h2>What You'll Learn:</h2>
+        <ul>
+            <li><strong>HTML & CSS Fundamentals:</strong> Understand the structure and styling of web pages using HTML5
+                and CSS3.</li>
+            <li><strong>JavaScript & DOM Manipulation:</strong> Learn to create dynamic, interactive web pages with
+                JavaScript and manipulate the Document Object Model (DOM).</li>
+            <li><strong>Responsive Design:</strong> Master the art of creating responsive web designs that look great on
+                all devices, using frameworks like Bootstrap.</li>
+            <li><strong>Version Control with Git:</strong> Gain hands-on experience with Git and GitHub for managing and
+                collaborating on projects.</li>
+            <li><strong>Front-End Frameworks:</strong> Dive into popular frameworks such as React or Angular to build
+                complex and efficient front-end applications.</li>
+            <li><strong>Back-End Development:</strong> Explore server-side programming with Node.js, Express, and
+                databases like MongoDB or MySQL.</li>
+            <li><strong>Full-Stack Project:</strong> Apply your skills to build a complete full-stack web application,
+                integrating both front-end and back-end technologies.</li>
+            <li><strong>APIs & Web Services:</strong> Learn how to work with APIs, RESTful services, and third-party
+                integrations to enhance your web applications.</li>
+            <li><strong>Security Best Practices:</strong> Understand the fundamentals of web security, including data
+                protection, authentication, and encryption.</li>
+        </ul>
+
+        <h2>Who Should Enroll:</h2>
+        <ul>
+            <li>Aspiring web developers looking to start their career.</li>
+            <li>Professionals wanting to upgrade their web development skills.</li>
+            <li>Entrepreneurs interested in building and managing their websites.</li>
+            <li>Designers and developers aiming to deepen their knowledge in full-stack development.</li>
+        </ul>
+
+        <h2>Course Duration:</h2>
+        <p>12 Weeks</p>
+
+        <h2>Level:</h2>
+        <p>Beginner to Advanced</p>
+
+        <h2>Prerequisites:</h2>
+        <p>Basic computer literacy. No prior programming experience required.</p>
+
+        <h2>Certificate:</h2>
+        <p>Upon successful completion, you will receive a Certificate of Achievement to showcase your skills to
+            potential employers or clients.</p>
+
+        <div class="enroll">
+            <h2>Enroll Today:</h2>
+            <p>Take the first step towards becoming a skilled web developer and join thousands of students in building
+                the web of the future!</p>
+                <a id="enrollButton" href="#">Enroll Now</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById("enrollButton").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            window.location.href = "{% url 'info' %}"; // Redirect to info.html
+        });
+    </script>
+    
+</body>
+
+</html>

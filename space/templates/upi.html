@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Payment Form</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        *{
+            margin-top: 0%;
+        }
+        /* Payment Container Styles */
+        .payment-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .payment-container h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .payment-container p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .payment-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: hsl(351, 83%, 61%);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: hsl(351, 88%, 71%);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        #processingMessage {
+            color: #28a745;
+            font-size: 16px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Course Payment - ₹1</h2>
+        <p>Scan the QR code below to pay ₹1 via Google Pay:</p>
+        <img src="{% static 'images/upi_payment_qr.png' %}" alt="Pay with UPI">
+
+        <form id="paymentForm" action="{% url 'payment' %}" method="GET">
+            <button type="submit">Proceed</button>
+        </form>
+        <div id="processingMessage">Processing payment...</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('paymentForm');
+            const processingMessage = document.getElementById('processingMessage');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Show the processing message
+                processingMessage.style.display = 'block';
+
+                // Redirect after a short delay to simulate processing
+                setTimeout(() => {
+                    window.location.href = "{% url 'payment' %}"; // Redirect to the payment page
+                }, 3000); // 3-second delay
+            });
+        });
+    </script>
+</body>
+</html>
