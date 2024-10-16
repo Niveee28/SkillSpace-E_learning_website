@@ -1,7 +1,6 @@
 import qrcode
 
-# Define the UPI payment URL
-upi_url = "upi://pay?pa=nivethasenthilkumar28n@okicici&pn=Nivetha&am=1&cu=INR"
+upi_url = " (upi url)"
 
 # Create a QR code object
 qr = qrcode.QRCode(
